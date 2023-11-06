@@ -1,0 +1,48 @@
+#screen{
+    top: 0;
+    width: auto;
+    height: 80%;
+    background-color: red;
+}
+
+#controls{
+    bottom: 0;
+    width: auto;
+    height: 20%;
+    background-color: aqua;
+}
+
+.button{
+    text-align: center;
+    line-height: 150px;
+    height: 150px;
+    font-size: xx-large;
+    margin: 10px;
+}
+
+#attack{
+    background-color: #EB90AF;
+    color: #8DB2C5;
+    width: 33%;
+    position: fixed;
+    left: 0;
+}
+
+#attack:hover{
+    background-color: #8DB2C5;
+    color: #EB90AF;
+}
+
+#defend{
+    background-color: #8DB2C5;
+    width: 33%;
+    position: fixed;
+    
+}
+
+#finisher{
+    background-color: #8DB2C5;
+    width: 33%;
+    position: fixed;
+    right: 0;
+}
