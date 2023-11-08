@@ -1,25 +1,25 @@
-.body{
-    height: 100%;
-    width: 100%;
-}
-
 #screen{
     display: flex;
     align-items: flex-start;
-    background-color: red;
     height: 4fr;
+}
+
+#player{
+    margin-top: 7%;
+    margin-right: 15%;
 }
 
 #controls{
     display: flex;
     align-content: flex-end;
     justify-content: space-evenly;
-    height: 1fr;
 }
 
 .button{
-    flex-basis: 100%;
     text-align: center;
+    height: 60px;
+    padding: 60px;
+    font-size: xx-large;
 }
 
 #attack{
