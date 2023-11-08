@@ -1,17 +1,16 @@
 let isOver=false;
 let message=document.querySelector('gameMessage'); //presents message if Finisher is clicked but can't be performed or if a player wins
+let f1OG=document.querySelector('fighter1OG'); //stores original stats for Fighter1
 let f1Stats=document.querySelector('fighter1Stats'); //displays fighter1 stats on screen
 let f1Log=document.querySelector('fighter1Log'); //logs all moves made by fighter1
+let f2OG=document.querySelector('fighter2OG'); //stores original stats for Fighter2
 let f2Stats=document.querySelector('fighter2Stats'); //displays fighter2 stats on screen
 let f2Log=document.querySelector('fighter2Log'); //logs all moves made by fighter2
 
 //all functions need to be converted to arrow operators
 class Fighter{ //creates a Fighter instance
     stats=(0,1,2,3); //0=Strength; 1=Cunning; 2=Speed; 3=Fatigue
-    strOG=0; //original strength stat
-    cunOG=0; //original cunning stat
-    speOG=0; //original speed stat
-    fatOG=0; //original fatigue stat
+    ogStats=(0,1,2,3); //stores baseline stats
     attackVal=0; //stores attack value during a round
     defenseVal=0; //stores defense value during a round
     finVal=false; //flags attack as a finisher
@@ -40,16 +39,27 @@ class Fighter{ //creates a Fighter instance
         }
         else{stats[3]=30-Math.floor(Math.random()*7);}
 
-        ogStats=(0,1,2,3);
         this.ogStats[0]=this.stats[0];
         this.ogStats[1]=this.stats[1];
         this.ogStats[2]=this.stats[2];
         this.ogStats[3]=this.stats[3];
     }
 
+    //fills in screen with original stats
+    fillOGStats(log){
+        statNames=('Strength: ', 'Cunning: ', 'Speed: ', 'Fatigue: ');
+        log.innerHTML='Original Stats:\n';
+        int=0;
+        while(int<4){
+            log.innerHTML+=(statNames[int]+this.ogStats[int]+'\n');
+            counter++;
+        }
+    }
+
+    //updates the display of stats on screen
     updateStatDisplay(log){
         statNames=('Strength: ', 'Cunning: ', 'Speed: ', 'Fatigue: ');
-        log.innerHTML='';
+        log.innerHTML='Current Stats:\n';
         int=0;
         while(int<4){
             log.innerHTML+=(statNames[int]+this.stats[int]+'\n');
@@ -94,10 +104,6 @@ class Fighter{ //creates a Fighter instance
     setFinish(newVal){
         this.finVal=newVal;
     }
-
-    getOG(num){
-        return this.ogStats[num];
-    }
 }
 
 //allows both players to choose what action they want to take, then executes them after both players have chosen
@@ -120,30 +126,34 @@ function round(f1,f2){
         }
     });
 
-    if(f1.getFinish() && f1.getAttack()> 1){
+    if(f1.getFinish() && f1.getAttack()>1 && !isOver){
         message.innerHTML='You win.';
+        isOver=true;
     }
-    if(f2.getFinish() && f2.getAttack()> 1){
+    if(f2.getFinish() && f2.getAttack()>1 && !isOver){
         message.innerHTML='You lose.';
+        isOver=true;
     }
     if((f1.getAttack()===0)&&(f2.getAttack()===0)){
-        f1.setStat(3, Math.floor((Math.random()*6)+1));
-        f2.setStat(3, Math.floor((Math.random()*6)+1));
+        f1.setStat(3, Math.floor((Math.random()*6)+1)); fighter1.updateStatDisplay(f1Stats);
+        f2.setStat(3, Math.floor((Math.random()*6)+1)); fighter2.updateStatDisplay(f2Stats);
     }
     if(f1.getAttack()!==0 && f1.getAttack()>f2.getDefend()){
-        f2.setStat(3,f1.getAttack()-f2.getDefend());
+        f2.setStat(3,f1.getAttack()-f2.getDefend()); fighter2.updateStatDisplay(f2Stats);
     }
     if(f2.getAttack()!==0 && f2.getAttack()>f1.getDefend()){
-        f1.setStat(3,f2.getAttack()-f1.getDefend());
+        f1.setStat(3,f2.getAttack()-f1.getDefend()); fighter1.updateStatDisplay(f1Stats);
     }
 }
 
 function game(){
     let fighter1=new Fighter();
     fighter1.randomize();
+    fighter1.fillOGStats(f1OG);
     fighter1.updateStatDisplay(f1Stats);
     let fighter2=new Fighter();
     fighter2.randomize();
+    fighter2.fillOGStats(f2OG);
     fighter2.updateStatDisplay(f2Stats);
 
     while(!isOver){round(fighter1,fighter2);}
