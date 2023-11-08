@@ -144,6 +144,16 @@ function round(f1,f2){
     if(f2.getAttack()!==0 && f2.getAttack()>f1.getDefend()){
         f1.setStat(3,f2.getAttack()-f1.getDefend()); fighter1.updateStatDisplay(f1Stats);
     }
+
+    attack.removeEventListener('click',f1.setAttack(true) && f1.setDefend(false) && f1.setFinish(true));
+    defend.removeEventListener('click',f1.setDefend(true) && f1.setAttack(false));
+    finisher.removeEventListener('click',()=>{
+        if((f2.getStat(3)>=(f1.getStat(3)*2)) && f1.getStat(3)<=0){
+            f1.setAttack(true);
+            f1.setDefend(false);
+            f1.setFinish(true);
+        }
+    });
 }
 
 function game(){
