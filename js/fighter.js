@@ -116,7 +116,7 @@ function round(f1,f2){
     }
     else{f2.setAttack(true); f2.setDefend(false); f2.setFinish(true);}
 
-    attack.addEventListener('click',f1.setAttack(true) && f1.setDefend(false) && f1.setFinish(true));
+    attack.addEventListener('click',f1.setAttack(true) && f1.setDefend(false) && f1.setFinish(false));
     defend.addEventListener('click',f1.setDefend(true) && f1.setAttack(false));
     finisher.addEventListener('click',()=>{
         if((f2.getStat(3)>=(f1.getStat(3)*2)) && f1.getStat(3)<=0){
@@ -145,7 +145,7 @@ function round(f1,f2){
         f1.setStat(3,f2.getAttack()-f1.getDefend()); fighter1.updateStatDisplay(f1Stats);
     }
 
-    attack.removeEventListener('click',f1.setAttack(true) && f1.setDefend(false) && f1.setFinish(true));
+    attack.removeEventListener('click',f1.setAttack(true) && f1.setDefend(false) && f1.setFinish(false));
     defend.removeEventListener('click',f1.setDefend(true) && f1.setAttack(false));
     finisher.removeEventListener('click',()=>{
         if((f2.getStat(3)>=(f1.getStat(3)*2)) && f1.getStat(3)<=0){
