@@ -5,12 +5,12 @@
 		<link rel="stylesheet" href="css/userInterface.css" />
 		<script src="js/fighter.js"></script>
 	</head>
-	<body>
+	<body onload="game();">
 		<div id="screen">
-			<div id="gameMessage"></div>
-			<img src="assets/guxue_fighter.png" id="player" /><img src="assets/doanel_fighter.png" id="opponent" />
+			<div id="gameMessage" style="width: 50%;text-align: center;padding-left: 0 auto;;"></div>
 			<div id="fighter1Properties"><div id="fighter1Stats"></div><div id="fighter1Log"></div></div>
 			<div id="fighter2Properties"><div id="fighter2Stats"></div><div id="fighter2Log"></div></div>
+			<img src="assets/guxue_fighter.png" id="player" /><img src="assets/doanel_fighter.png" id="opponent" />
 		</div>
 		<div id="controls">
 			<div class="button" id="attack">Attack</div>
