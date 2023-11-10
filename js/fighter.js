@@ -52,7 +52,7 @@ class Fighter{ //creates a Fighter instance
         int=0;
         while(int<4){
             log.innerHTML+=(statNames[int]+this.ogStats[int]+'\n');
-            counter++;
+            int++;
         }
     }
 
@@ -63,7 +63,7 @@ class Fighter{ //creates a Fighter instance
         int=0;
         while(int<4){
             log.innerHTML+=(statNames[int]+this.stats[int]+'\n');
-            counter++;
+            int++;
         }
     }
 
@@ -133,20 +133,20 @@ const round=(f1,f2)=>{
         f2.setStat(3, Math.floor((Math.random()*6)+1)); fighter2.updateStatDisplay(f2Stats); f2Log.innerHTML+='defend\n';
     }
     if(f1.getAttack()!==0 && f1.getAttack()>f2.getDefend()){
-        f2.setStat(3,f1.getAttack()-f2.getDefend()); fighter2.updateStatDisplay(f2Stats);
+        f2.setStat(3,f2.getDefend()-f1.getAttack()); fighter2.updateStatDisplay(f2Stats);
     }
     if(f2.getAttack()!==0 && f2.getAttack()>f1.getDefend()){
-        f1.setStat(3,f2.getAttack()-f1.getDefend()); fighter1.updateStatDisplay(f1Stats);
+        f1.setStat(3,f1.getDefend()-f2.getAttack()); fighter1.updateStatDisplay(f1Stats);
     }
 }
 
 const game=()=>{
-    const fighter1=new Fighter();
+    let fighter1=new Fighter();
     fighter1.randomize();
     fighter1.fillOGStats(f1OG);
     fighter1.updateStatDisplay(f1Stats);
 
-    const fighter2=new Fighter();
+    let fighter2=new Fighter();
     fighter2.randomize();
     fighter2.fillOGStats(f2OG);
     fighter2.updateStatDisplay(f2Stats);
