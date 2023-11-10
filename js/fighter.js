@@ -99,12 +99,12 @@ class Fighter{ //creates a Fighter instance
 }
 
 const game=()=>{
-    let fighter1=new Fighter();
+    const fighter1=new Fighter();
     fighter1.randomize();
     fighter1.fillOGStats(f1OG);
     fighter1.updateStatDisplay(f1Stats);
 
-    let fighter2=new Fighter();
+    const fighter2=new Fighter();
     fighter2.randomize();
     fighter2.fillOGStats(f2OG);
     fighter2.updateStatDisplay(f2Stats);
